@@ -13,8 +13,9 @@ class Stop(models.Model):
 
 class Route(models.Model):
     id = models.AutoField(primary_key=True)
-    routeName = models.CharField(max_length=100)
+    routeName = models.CharField(max_length=101)
     busNumber = models.IntegerField()
-    RouteStops = ArrayField(
-
+    routeStop = ArrayField(
+        models.IntegerField(),
+        default=None
     )
