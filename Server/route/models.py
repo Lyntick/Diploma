@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.fields import ArrayField, JSONField
 
 
 # Create your models here.
@@ -15,7 +15,7 @@ class Route(models.Model):
     id = models.AutoField(primary_key=True)
     routeName = models.CharField(max_length=101)
     busNumber = models.IntegerField()
-    routeStop = ArrayField(
-        models.IntegerField(),
-        default=None
-    )
+    Stops = ArrayField(
+                       JSONField(),
+                       default=None
+                       )
