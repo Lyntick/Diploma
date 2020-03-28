@@ -15,7 +15,4 @@ class Route(models.Model):
     id = models.AutoField(primary_key=True)
     routeName = models.CharField(max_length=101)
     busNumber = models.IntegerField()
-    Stops = ArrayField(
-                       JSONField(),
-                       default=None
-                       )
+    Stops = JSONField()
