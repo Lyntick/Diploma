@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from Server.route.models import Stop , Route
+from route.models import Stop, Route
+
 
 class StopListSerializer(serializers.ModelSerializer):
     class Meta:
