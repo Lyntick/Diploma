@@ -1,14 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
+from route.models import Route
 
-# Create your models here.
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    surname = models.TextField()
+    name = models.TextField()
+    numberRoute = models.OneToOneField(Route, on_delete=models.DO_NOTHING)
 
-class Driver(models.Model):
-    id = models.AutoField(primary_key=True)
-    surname = models.CharField(max_length=30)
-    name = models.CharField(max_length=20)
-    login = models.CharField(max_length=13)
-    password = models.CharField(max_length=30)#помнеять на шифрованую
-    busNumber = models.IntegerField()
-    govNumber = models.CharField(max_length=50)
-
-
+    def __unicode__(self):
+        return self.user
+    class Meta:
+        verbose_name = 'Профиль'
+        verbose_name_plural = 'Профили'

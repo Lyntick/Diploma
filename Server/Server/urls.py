@@ -16,11 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', include('rest_framework.urls')),
     path('api/v1/driver/', include('driver.urls')),
     path('api/v1/client/', include('client.urls')),
     path('api/v1/route/', include('route.urls')),
+    path('api/v1/auth/', admin.site.urls),
+    path('api/v1/auth_token/', include('djoser.urls.authtoken')),
 ]
