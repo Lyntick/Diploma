@@ -1,15 +1,16 @@
 from django.db import models
-from django.contrib.auth.models import User
-from route.models import Route
+from django.contrib.auth import get_user_model
+from route.models import Route, Stop
+from django.contrib.postgres.fields import JSONField , ArrayField
+from client.models import ActivePassengers
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    surname = models.TextField()
-    name = models.TextField()
-    numberRoute = models.OneToOneField(Route, on_delete=models.DO_NOTHING)
+User = get_user_model()
 
-    def __unicode__(self):
-        return self.user
-    class Meta:
-        verbose_name = 'Профиль'
-        verbose_name_plural = 'Профили'
+
+class ActiveDriver(models.Model):
+    idDriver = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    numberRoute = models.ForeignKey(Route, on_delete=models.CASCADE, )
+    numberPassengers = models.ManyToManyField(ActivePassengers)
+    Active = models.BooleanField(default=True)
+    GPS = JSONField
+    Locate = models.ForeignKey(Stop, on_delete=models.CASCADE)

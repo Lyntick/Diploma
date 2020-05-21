@@ -22,6 +22,12 @@ class RouteDetailView(generics.RetrieveAPIView):# вывод маршрутов 
     queryset = Route.objects.all()
     permission_classes = (IsAuthenticated,)
 
+class StopDetailView(generics.RetrieveAPIView):# вывод остановок по id
+    serializer_class = StopListSerializer
+    queryset = Stop.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+
 
 class EditStop(generics.RetrieveUpdateDestroyAPIView):#редактирование остановок
     serializer_class = StopListSerializer
