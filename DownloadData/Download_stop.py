@@ -3,7 +3,7 @@ from psycopg2 import sql
 import json
 
 stops = None
-with open('P:\Diploma\ImportantData\stopsNew.json', 'r') as file:
+with open('stopsNew.json', 'r') as file:
     stops = json.load(file)
 
 conn = psycopg2.connect(dbname='server_main', user='admin',
