@@ -22,6 +22,7 @@ urlpatterns = [
     path('driver/', include('driver.urls')),
     path('client/', include('client.urls')),
     path('route/', include('route.urls')),
+    path('statistic/', include('statistic.urls')),
     path('authbase/', include('rest_framework.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

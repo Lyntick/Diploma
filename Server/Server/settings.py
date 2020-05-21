@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'client',
     'driver',
     'route',
+    'statistic',
     'djoser',
 ]
 
