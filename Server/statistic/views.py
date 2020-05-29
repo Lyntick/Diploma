@@ -12,19 +12,19 @@ class StatisticEditView(generics.RetrieveDestroyAPIView):
 class StatisticCreateView(generics.CreateAPIView):
     serializer_class = StatisticListSerializer
     queryset = Statistic.objects.all()
-    permission_classes = (IsAdminUser,)
+    #permission_classes = (IsAdminUser,)
 
 
 class ScheduleAddView(generics.CreateAPIView):
     serializer_class = ScheduleListSerializer
     queryset = Schedule.objects.all()
-    permission_classes = (IsAdminUser,)
+    #permission_classes = (IsAdminUser,)
 
 
 class ScheduleEditView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ScheduleListSerializer
     queryset = Schedule.objects.all()
-    permission_classes = (IsAdminUser,)
+    #permission_classes = (IsAdminUser,)
 
 
 

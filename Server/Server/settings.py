@@ -25,6 +25,7 @@ SECRET_KEY = 'junnd_zj)59qfy629tay3ag(po!8^_h02k$2j-=)rnt-9a))j@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -43,6 +44,20 @@ INSTALLED_APPS = [
     'route',
     'statistic',
     'djoser',
+    'corsheaders',
+
+]
+CORS_ORIGIN_ALLOW_ALL = True
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',# добавил core
+    'django.middleware.common.CommonMiddleware',
 ]
 
 SIMPLE_JWT = {  # настройки jwt токена
@@ -70,16 +85,6 @@ SIMPLE_JWT = {  # настройки jwt токена
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
 ROOT_URLCONF = 'Server.urls'
 
