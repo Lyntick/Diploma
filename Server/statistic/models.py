@@ -9,5 +9,5 @@ class Statistic(models.Model):
 class Schedule(models.Model):
     routeId = models.ForeignKey(Route, on_delete=models.DO_NOTHING)
     dayOff = models.BooleanField(blank=True)
-    departure = ArrayField(models.CharField(max_length=5), blank=True)#отправка
-    arrival = ArrayField(models.CharField(max_length=5), blank=True)#прибытие
+    departure = ArrayField(models.CharField(max_length=5), blank=True)
+    arrival = ArrayField(models.CharField(max_length=5), blank=True)

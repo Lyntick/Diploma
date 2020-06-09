@@ -7,7 +7,7 @@ from .models import Statistic, Schedule
 class StatisticEditView(generics.RetrieveDestroyAPIView):
     serializer_class = StatisticListSerializer
     queryset = Statistic.objects.all()
-    permission_classes = (IsAdminUser,)
+    #permission_classes = (IsAdminUser,)
 
 class StatisticCreateView(generics.CreateAPIView):
     serializer_class = StatisticListSerializer

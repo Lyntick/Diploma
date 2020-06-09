@@ -1,15 +1,18 @@
 from .serializers import ActiveDriveSerializers, ActiveDriveFilterSerializers
 from rest_framework import generics
-from rest_framework.permissions import  IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from .models import ActiveDriver
 from client.serializers import ActivePassengers
-from django.db.models import  F
+from django.db.models import F
 from rest_framework.response import Response
 
 
-
-
 class ActiveDriverView(generics.CreateAPIView):
+    serializer_class = ActiveDriveSerializers
+    queryset = ActiveDriver.objects.all()
+    permission_classes = (IsAuthenticated,)
+
+class ActiveDriverAllView(generics.ListAPIView):
     serializer_class = ActiveDriveSerializers
     queryset = ActiveDriver.objects.all()
     permission_classes = (IsAuthenticated,)
@@ -21,14 +24,16 @@ class ActiveEditView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated,)
 
 
-class ActiveDriverGetPassgersToSit(generics.ListAPIView):  # доделать запрос, объекты выводятся, не работает подсчет количества объектов
+class ActiveDriverGetPassgersToSit(generics.ListAPIView):
     serializer_class = ActiveDriveFilterSerializers
+    #permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = ActivePassengers.objects.all()
-        index = self.request.query_params.get('idstop', None)
-        if index is not None:
-            queryset = queryset.raw('''SELECT * FROM public.client_activepassengers WHERE "idStop" = %s ''',[index])
+        idstop = self.request.query_params.get('idstop', None)
+        iddriver = self.request.query_params.get('iddriver', None)
+        if idstop is not None:
+            queryset = queryset.raw('''SELECT * FROM public.client_activepassengers WHERE "idStop" = %s and "idDriver" = '0' ''',[idstop])
         return queryset
 
     def list(self, request, *args, **kwargs):
@@ -43,11 +48,9 @@ class ActiveDriverGetPassgersToSit(generics.ListAPIView):  # доделать з
         return Response(len(list(serializer.data)))
 
 
-
-
-class ActiveDriverGetPassgersToOut(
-    generics.ListAPIView):  # доделать запрос, не работает подсчет количества объектов, объекты выводятся
+class ActiveDriverGetPassgersToOut(generics.ListAPIView):
     serializer_class = ActiveDriveSerializers
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = ActiveDriver.objects.all()

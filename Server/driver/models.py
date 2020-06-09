@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from route.models import Route, Stop
-from django.contrib.postgres.fields import JSONField , ArrayField
+from django.contrib.postgres.fields import JSONField
 from client.models import ActivePassengers
 
 User = get_user_model()

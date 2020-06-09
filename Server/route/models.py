@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.postgres.fields import  JSONField
 
 
-# Create your models here.
+
 
 class Stop(models.Model):
     id = models.AutoField(primary_key=True)
